@@ -370,6 +370,22 @@ object ArrayOps : TemplateGroupBase() {
         }
     }
 
+    val f_copyOfRangeJvmImpl = fn("copyOfRangeImpl(fromIndex: Int, toIndex: Int)") {
+        include(InvariantArraysOfObjects, ArraysOfPrimitives)
+        platforms(Platform.JVM)
+    } builderWith { primitive ->
+        since("1.3")
+        visibility("internal")
+        annotation("@PublishedApi")
+        annotation("""@JvmName("copyOfRange")""")
+        returns("SELF")
+        body {
+            """
+            copyOfRangeToIndexCheck(toIndex, size)
+            return java.util.Arrays.copyOfRange(this, fromIndex, toIndex)
+            """
+        }
+    }
 
     val f_copyOfRange = fn("copyOfRange(fromIndex: Int, toIndex: Int)") {
         include(InvariantArraysOfObjects, ArraysOfPrimitives)
@@ -401,14 +417,16 @@ object ArrayOps : TemplateGroupBase() {
             body { rangeCheck + "\n" + body }
         }
         on(Platform.JVM) {
+            annotation("""@JvmName("copyOfRangeInline")""")
             inlineOnly()
             body {
                 """
-                when {
-                    kotlin.internal.apiVersionIsAtLeast(1, 3, 0) -> copyOfRangeToIndexCheck(toIndex, size)
-                    else -> if (toIndex > size) throw IndexOutOfBoundsException("toIndex: ${'$'}toIndex, size: ${'$'}size")
+                return if (kotlin.internal.apiVersionIsAtLeast(1, 3, 0)) {
+                    copyOfRangeImpl(fromIndex, toIndex)
+                } else {
+                    if (toIndex > size) throw IndexOutOfBoundsException("toIndex: ${'$'}toIndex, size: ${'$'}size")
+                    java.util.Arrays.copyOfRange(this, fromIndex, toIndex)
                 }
-                return java.util.Arrays.copyOfRange(this, fromIndex, toIndex)
                 """
             }
         }
