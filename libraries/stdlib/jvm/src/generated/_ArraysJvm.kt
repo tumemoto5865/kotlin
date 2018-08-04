@@ -814,74 +814,137 @@ public actual inline fun <T> Array<T>.copyOf(newSize: Int): Array<T?> {
 }
 
 /**
- * Returns new array which is a copy of range of original array.
+ * Returns a new array which is a copy of the specified range of the original array.
+ * 
+ * @param fromIndex the start of the range (inclusive), must be in `0..array.size`
+ * @param toIndex the end of the range (exclusive), must be in `fromIndex..array.size`
  */
 @kotlin.internal.InlineOnly
 public actual inline fun <T> Array<T>.copyOfRange(fromIndex: Int, toIndex: Int): Array<T> {
+    when {
+        kotlin.internal.apiVersionIsAtLeast(1, 3, 0) -> copyOfRangeToIndexCheck(toIndex, size)
+        else -> if (toIndex > size) throw IndexOutOfBoundsException("toIndex: $toIndex, size: $size")
+    }
     return java.util.Arrays.copyOfRange(this, fromIndex, toIndex)
 }
 
 /**
- * Returns new array which is a copy of range of original array.
+ * Returns a new array which is a copy of the specified range of the original array.
+ * 
+ * @param fromIndex the start of the range (inclusive), must be in `0..array.size`
+ * @param toIndex the end of the range (exclusive), must be in `fromIndex..array.size`
  */
 @kotlin.internal.InlineOnly
 public actual inline fun ByteArray.copyOfRange(fromIndex: Int, toIndex: Int): ByteArray {
+    when {
+        kotlin.internal.apiVersionIsAtLeast(1, 3, 0) -> copyOfRangeToIndexCheck(toIndex, size)
+        else -> if (toIndex > size) throw IndexOutOfBoundsException("toIndex: $toIndex, size: $size")
+    }
     return java.util.Arrays.copyOfRange(this, fromIndex, toIndex)
 }
 
 /**
- * Returns new array which is a copy of range of original array.
+ * Returns a new array which is a copy of the specified range of the original array.
+ * 
+ * @param fromIndex the start of the range (inclusive), must be in `0..array.size`
+ * @param toIndex the end of the range (exclusive), must be in `fromIndex..array.size`
  */
 @kotlin.internal.InlineOnly
 public actual inline fun ShortArray.copyOfRange(fromIndex: Int, toIndex: Int): ShortArray {
+    when {
+        kotlin.internal.apiVersionIsAtLeast(1, 3, 0) -> copyOfRangeToIndexCheck(toIndex, size)
+        else -> if (toIndex > size) throw IndexOutOfBoundsException("toIndex: $toIndex, size: $size")
+    }
     return java.util.Arrays.copyOfRange(this, fromIndex, toIndex)
 }
 
 /**
- * Returns new array which is a copy of range of original array.
+ * Returns a new array which is a copy of the specified range of the original array.
+ * 
+ * @param fromIndex the start of the range (inclusive), must be in `0..array.size`
+ * @param toIndex the end of the range (exclusive), must be in `fromIndex..array.size`
  */
 @kotlin.internal.InlineOnly
 public actual inline fun IntArray.copyOfRange(fromIndex: Int, toIndex: Int): IntArray {
+    when {
+        kotlin.internal.apiVersionIsAtLeast(1, 3, 0) -> copyOfRangeToIndexCheck(toIndex, size)
+        else -> if (toIndex > size) throw IndexOutOfBoundsException("toIndex: $toIndex, size: $size")
+    }
     return java.util.Arrays.copyOfRange(this, fromIndex, toIndex)
 }
 
 /**
- * Returns new array which is a copy of range of original array.
+ * Returns a new array which is a copy of the specified range of the original array.
+ * 
+ * @param fromIndex the start of the range (inclusive), must be in `0..array.size`
+ * @param toIndex the end of the range (exclusive), must be in `fromIndex..array.size`
  */
 @kotlin.internal.InlineOnly
 public actual inline fun LongArray.copyOfRange(fromIndex: Int, toIndex: Int): LongArray {
+    when {
+        kotlin.internal.apiVersionIsAtLeast(1, 3, 0) -> copyOfRangeToIndexCheck(toIndex, size)
+        else -> if (toIndex > size) throw IndexOutOfBoundsException("toIndex: $toIndex, size: $size")
+    }
     return java.util.Arrays.copyOfRange(this, fromIndex, toIndex)
 }
 
 /**
- * Returns new array which is a copy of range of original array.
+ * Returns a new array which is a copy of the specified range of the original array.
+ * 
+ * @param fromIndex the start of the range (inclusive), must be in `0..array.size`
+ * @param toIndex the end of the range (exclusive), must be in `fromIndex..array.size`
  */
 @kotlin.internal.InlineOnly
 public actual inline fun FloatArray.copyOfRange(fromIndex: Int, toIndex: Int): FloatArray {
+    when {
+        kotlin.internal.apiVersionIsAtLeast(1, 3, 0) -> copyOfRangeToIndexCheck(toIndex, size)
+        else -> if (toIndex > size) throw IndexOutOfBoundsException("toIndex: $toIndex, size: $size")
+    }
     return java.util.Arrays.copyOfRange(this, fromIndex, toIndex)
 }
 
 /**
- * Returns new array which is a copy of range of original array.
+ * Returns a new array which is a copy of the specified range of the original array.
+ * 
+ * @param fromIndex the start of the range (inclusive), must be in `0..array.size`
+ * @param toIndex the end of the range (exclusive), must be in `fromIndex..array.size`
  */
 @kotlin.internal.InlineOnly
 public actual inline fun DoubleArray.copyOfRange(fromIndex: Int, toIndex: Int): DoubleArray {
+    when {
+        kotlin.internal.apiVersionIsAtLeast(1, 3, 0) -> copyOfRangeToIndexCheck(toIndex, size)
+        else -> if (toIndex > size) throw IndexOutOfBoundsException("toIndex: $toIndex, size: $size")
+    }
     return java.util.Arrays.copyOfRange(this, fromIndex, toIndex)
 }
 
 /**
- * Returns new array which is a copy of range of original array.
+ * Returns a new array which is a copy of the specified range of the original array.
+ * 
+ * @param fromIndex the start of the range (inclusive), must be in `0..array.size`
+ * @param toIndex the end of the range (exclusive), must be in `fromIndex..array.size`
  */
 @kotlin.internal.InlineOnly
 public actual inline fun BooleanArray.copyOfRange(fromIndex: Int, toIndex: Int): BooleanArray {
+    when {
+        kotlin.internal.apiVersionIsAtLeast(1, 3, 0) -> copyOfRangeToIndexCheck(toIndex, size)
+        else -> if (toIndex > size) throw IndexOutOfBoundsException("toIndex: $toIndex, size: $size")
+    }
     return java.util.Arrays.copyOfRange(this, fromIndex, toIndex)
 }
 
 /**
- * Returns new array which is a copy of range of original array.
+ * Returns a new array which is a copy of the specified range of the original array.
+ * 
+ * @param fromIndex the start of the range (inclusive), must be in `0..array.size`
+ * @param toIndex the end of the range (exclusive), must be in `fromIndex..array.size`
  */
 @kotlin.internal.InlineOnly
 public actual inline fun CharArray.copyOfRange(fromIndex: Int, toIndex: Int): CharArray {
+    when {
+        kotlin.internal.apiVersionIsAtLeast(1, 3, 0) -> copyOfRangeToIndexCheck(toIndex, size)
+        else -> if (toIndex > size) throw IndexOutOfBoundsException("toIndex: $toIndex, size: $size")
+    }
     return java.util.Arrays.copyOfRange(this, fromIndex, toIndex)
 }
 

@@ -364,3 +364,8 @@ private fun rangeCheck(size: Int, fromIndex: Int, toIndex: Int) {
 }
 
 
+@PublishedApi
+@SinceKotlin("1.3")
+internal fun copyOfRangeToIndexCheck(toIndex: Int, size: Int) {
+    if (toIndex > size) throw IndexOutOfBoundsException("toIndex ($toIndex) is greater than size ($size).")
+}
